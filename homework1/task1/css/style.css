@@ -1,0 +1,57 @@
+div {
+    display: block;
+}
+
+body {
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+}
+
+#app {
+    margin: 150px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #a6a4ae;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.rightcol {
+    width: 300px;
+    float: right;
+    margin-left: 0px;
+}
+
+.header_image img {
+    width: 100%;
+}
+
+.description {
+    font-size: 13px;
+}
+
+.leftcol {
+    float: left;
+    width: 650px;
+}
+
+.video_wrapper {
+    margin-right: 16px;
+}
+
+video {
+    width: 100%;
+}
+
+a {
+    color: #c6d4ee;
+}
+
+a:visited {
+    color: #c6d4ee;
+}

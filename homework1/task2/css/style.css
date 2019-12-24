@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+}
+
+#app {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 900px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: white;
+}
+
+.leftcol {
+    width: 500px;
+    float: left;
+    padding: 20px;
+}
+
+.bio {
+    margin-top: 30px;
+    text-align: justify;
+}
+
+.rightcol {
+    margin-left: 0;
+    width: 320px;
+    float: right;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.profile_name p {
+    text-align: center;
+}
+
+.image_wrapper img {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.short_bio table {
+    margin-top: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.short_bio table tr {
+    height: 30px;
+}
+
+.short_bio table tr td {
+    padding-left: 10px;
+}
+
+.short_bio table th {
+    background-color: antiquewhite;
+}

@@ -1,0 +1,51 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <title>Path of Exile</title>
+	</head>
+	<body>
+        <div id="app">
+            <div class="container">
+                <h1 v-text="product.title"></h1>
+                <div class="rightcol" v-bind:id="product.id">
+                    <div class="header_image">
+                        <img v-bind:src="product.image">
+                    </div>
+                    <div class="description">
+                        <p v-html="product.desc"></p>
+                        <p>DEVELOPER: {{ product.developer }}</p>
+                        <p>PUBLISHER: {{ product.publisher }}</p>
+                        <p>RELEASE DATE: {{ product.release_date }}</p>
+                        <p>
+                            <a v-bind:href="product.link">{{ product.price}} on Steam</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="leftcol">
+                    <div class="video_wrapper">
+                        <video src="https://steamcdn-a.akamaihd.net/steam/apps/256767633/movie480.webm?t=1574130255" autoplay="autoplay" loop="loop" muted="muted" controls="controls"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            let webStore = new Vue({
+                el: "#app",
+                data: {
+                    product: {
+                        id: 1,
+                        title: "Path of Exile",
+                        desc: "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Created by hardcore gamers, Path of Exile is an online Action RPG set in a dark fantasy world.",
+                        developer: "Grinding Gear Games",
+                        publisher: "Grinding Gear Games",
+                        release_date: "23 Oct, 2013",
+                        price: "Free to Play",
+                        image: "img/header.jpg",
+                        link: "https://store.steampowered.com/app/238960/Path_of_Exile/?l=english",
+                    }
+                },
+            });
+        </script>
+   </body>
+</html>

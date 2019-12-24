@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <title>Profile</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="leftcol">
+                    <div class="bio">
+                        {{profile.bio_part1}}
+                    </div>
+                    <div class="bio">
+                        {{profile.bio_part2}}
+                    </div>
+                </div>
+                <div class="rightcol">
+                    <div class="image_wrapper">
+                        <img v-bind:src="profile.image">
+                    </div>
+                    <div class="short_bio">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">Personal information</th>
+                                </tr>
+                                <tr>
+                                    <th>Born</th>
+                                    <td>
+                                        <span>{{profile.born_name}}</span>
+                                        <br>
+                                        <span>{{profile.date_of_birth}}</span>
+                                        <br>
+                                        <span>{{profile.born_country}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Nationality</th>
+                                    <td>
+                                        <span>{{profile.nationality}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Residence</th>
+                                    <td>
+                                        <span>{{profile.residence}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Occupation</th>
+                                    <td>
+                                        <span>{{profile.occupation}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Channel</th>
+                                    <td>
+                                        <a v-bind:href="profile.channel">forsen</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    profile: {
+                        name: "Sebastian Hans Eli \"Forsen\" Fors",
+                        born_name: "Sebastian Hans Eli Fors",
+                        date_of_birth: "16 December 1990",
+                        born_country: "Stockholm, Sweden",
+                        nationality: "Swedish",
+                        residence: "Spain",
+                        occupation: "Video game streamer",
+                        age: 29,
+                        image: "img/forsen.png",
+                        bio_part1: "Sebastian Hans Eli Fors, known by the pseudonym Forsen, is a Swedish Twitch streamer who is known for competing in Starcraft II and Hearthstone. He is also known for his rowdy fanbase, who call themselves \"Forsenboys\" and have had a hand in popularizing a number of controversial internet memes. In January 2018, a warped image of Fors' face (\"forsenE\") became the most-used emote on Twitch worldwide. As of January 2019, he is the 17th largest streamer on Twitch by subscriber count.",
+                        bio_part2: "In Hearthstone, he won his first tournament in the May 2015 HTC Invitational, and won a Play it Cool streaming marathon in October 2015. Forsen was one of the most popular Hearthstone streamers in 2015, streaming to between 2,000 and 30,000 viewers on his live stream on Twitch. He was once known as one of the game's most skilled Miracle Rogue experts. In February 2018, Forsen led his four-player team to victory in a $100,000 Twitch Rivals PlayerUnknown's Battlegrounds Invitational tournament, taking home $13,600. The following month, he also participated in Darwin Project Invitational tournament, taking first place and winning US$20,000. In December 2018, he achieved a personal all-time high viewer count of 80,860.",
+                        channel: "https://twitch.tv/forsen",
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
