@@ -1,0 +1,72 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div id="app">
+            <div>
+                <span>{{shortText}}</span>
+                <a @click="visible=true" v-if="!visible" href="#">read more...</a>
+                <span v-show="visible">{{longText}}</span>
+            </div>
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a v-on:click="onNavClick(1)" href="#">main</a>
+                    </li>
+                    <li>
+                        <a v-on:click="onNavClick(2)" href="#">projects</a>
+                    </li>
+                    <li>
+                        <a v-on:click="onNavClick(3)" href="#">contact us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <span v-if="mainMenu">Main Menu</span>
+                <span v-if="projects">Projects</span>
+                <span v-if="contacts">Contacts</span>
+            </div>
+        </div>
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    shortText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+                    longText: `Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. 
+                    Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. 
+                    Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. 
+                    Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. 
+                    In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.`,
+                    visible: false,
+                    mainMenu: true,
+                    projects: false,
+                    contacts: false,
+                },
+                methods: {
+                    onNavClick(n) {
+                        switch(n) {
+                            case 1:
+                                this.mainMenu = true;
+                                this.projects = false;
+                                this.contacts = false;
+                                break;
+                            case 2:
+                                this.mainMenu = false;
+                                this.projects = true;
+                                this.contacts = false;
+                                break;
+                            case 3:
+                                this.mainMenu = false;
+                                this.projects = false;
+                                this.contacts = true;
+                                break;
+                        }
+                    }
+                }
+            });
+        </script>
+   </body>
+</html>

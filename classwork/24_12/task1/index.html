@@ -1,0 +1,36 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div id="app">
+            <input type="text" v-model="name">
+            <br>
+            <p>{{name}}</p>
+            <br>
+            <input type="text"
+                v-bind:value="number"
+                v-on:input="number = $event.target.value">
+            <p>Factorial of {{number}} equals {{factorial(number)}}</p>
+        </div>
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    name: "Denis",
+                    number: 5,
+                },
+                methods: {
+                    factorial(n){
+                        let res = 1;
+                        for(let i = 1; i <= n; i++){
+                            res *= i;
+                        }
+                        return res;
+                    }
+                }
+            });
+        </script>
+   </body>
+</html>

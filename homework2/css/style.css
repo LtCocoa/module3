@@ -1,0 +1,19 @@
+.navigation ul {    
+    list-style-type: none;
+    overflow: hidden;
+    margin: 10px;
+    padding: 0;
+}
+
+.navigation li {
+    float: left;
+    background-color: silver;
+    margin: 0 10px;
+    width: 150px;
+}
+
+.navigation a {
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+}
