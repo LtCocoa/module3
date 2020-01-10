@@ -1,0 +1,71 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+        <div id="app">
+            <input type="radio" v-bind:value="variantName1" v-model="user" style="color: red">
+            <label>{{variantName1}}</label><br>
+            <input type="radio" v-bind:value="variantName2" v-model="user">
+            <label>{{variantName2}}</label><br>
+            <span v-bind:style="{color:color1}">Выбрано: {{ user }}</span>
+            <br><br><br>
+            <ul>
+                <template v-for="student in students">
+                    <li>
+                        <p v-for="(value,key) in student">{{key}}: {{value}}</p>
+                    </li>
+                </template>
+            </ul>
+            <br><br><br>
+            <div>
+                <template v-for="user in users">
+                    <input type="checkbox" v-bind:value="user" v-model="selectedUsers">
+                    <label>{{user.name}}</label><br>
+                </template>
+                <ul>
+                    <li v-for="user in selectedUsers">{{user.name}} - {{user.age}}</li>
+                </ul>
+            </div>
+            <div>
+                <template v-for="user in users">
+                    <input type="radio" v-bind:value="user" v-model="selectedUser">
+                    <label>{{user.name}}</label><br>
+                </template>
+                <span v-if="selectedUser!==null">Выбрано: {{selectedUser.name}} - {{selectedUser.age}}</span>
+            </div>
+            <div>
+                <ul>
+                    <li v-for="item in items" :key="item.id">{{item.text}}</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    user:'',
+                    variantName1: 'Tom',
+                    variantName2: 'Bob',
+                    color1: "red",
+                    students: [
+                        {name: "Denis", age: 24},
+                        {name: "Alina", age: 25},
+                    ],
+                    users:[
+                        {name:'Tom', age:22},
+                        {name:'Bob', age:25},
+                        {name:'Sam', age:28},
+                        {name:'Alice', age:26}
+                    ],
+                    selectedUsers:[],
+                    selectedUser:null,
+                    items: [
+                        {id:2, text:'First'},
+                        {id:1, text:'Second'}
+                    ]
+                }
+            });
+        </script>
+   </body>
+</html>

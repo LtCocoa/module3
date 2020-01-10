@@ -1,0 +1,44 @@
+#task1 ul {    
+    list-style-type: none;
+    overflow: hidden;
+    padding: 10px;
+}
+
+#task1 li {
+    float: left;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#task1 li:hover {
+    transform: translate(0, -5px);
+    transition-property: transform;
+    transition-duration: 200ms;
+}
+
+#task1 a {
+    color: tomato;
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    display: block;
+}
+
+#task1 span {
+    display: block;
+    background-color: black;
+}
+
+#task1 a:hover {
+    color: brown;
+}
+
+#task1 img {
+    border-radius: 0 0 5px 5px;
+    height: 150px;
+}

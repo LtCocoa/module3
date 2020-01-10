@@ -1,0 +1,66 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div id="app">
+            <div id="task1">
+                <input type="text" v-model.lazy="searchString">
+                <input type="button" v-on:click="search" value="search"><br><br>
+                <ul>
+                    <template v-for="article in foundArticles">
+                        <li>
+                            <a v-bind:href="article.url">
+                                <span>{{article.title}}</span>
+                                <img v-bind:src="article.img">
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <div id="task2" @click="showInput" >
+                <p>{{text}}</p>
+                <div v-if="!isHidden">
+                    <input type="text" v-model.lazy="text" @blur="hideInput"/>
+                </div>
+            </div>
+        </div>
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    articles: [
+                        {title: "Hanlith", url: "https://en.wikipedia.org/wiki/Hanlith", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Hanlith%2C_North_Yorkshire.jpg/240px-Hanlith%2C_North_Yorkshire.jpg"},
+                        {title: "Millesimo", url: "https://en.wikipedia.org/wiki/Millesimo", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Millesimo-IMG_0907.JPG/250px-Millesimo-IMG_0907.JPG"},
+                        {title: "The Lambeth Walk", url: "https://en.wikipedia.org/wiki/The_Lambeth_Walk_(film)", img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/%22The_Lambeth_Walk%22_%281939%29.jpg/220px-%22The_Lambeth_Walk%22_%281939%29.jpg"},                        
+                        {title: "Ten Tors", url: "https://en.wikipedia.org/wiki/Ten_Tors", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/CNV00018.JPG/275px-CNV00018.JPG"},
+                        {title: "Pendulum", url: "https://en.wikipedia.org/wiki/Pendulum_(drum_and_bass_band)", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Pendulum_Live_Electric_2007.jpg/300px-Pendulum_Live_Electric_2007.jpg"},
+                    ],
+                    searchString: "",
+                    foundArticles: [],
+
+                    isHidden: true,
+                    text: 'hello',
+                },
+                methods: {
+                    search: function() {
+                        let regExp = new RegExp(this.searchString, 'i');
+                        this.foundArticles = [];
+                        for(let article in this.articles) {
+                            if(regExp.test(this.articles[article].title)) {
+                                this.foundArticles.push(this.articles[article]);
+                            }
+                        }
+                    },
+                    showInput: function() {
+                        this.isHidden = false;
+                    },
+                    hideInput: function() {
+                        this.isHidden = true;
+                    }
+                }
+            });
+        </script>
+   </body>
+</html>
