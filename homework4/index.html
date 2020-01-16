@@ -1,0 +1,114 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div id="app">
+            <div class="task1">
+                <div v-for="(service, index) in services">
+                    <input :value="service" v-model="selectedServices" type="checkbox">{{service.name}} - {{service.price}}
+                </div><br>
+                <!-- Через управление массивами -->
+                <div v-for="(service, index) in services" v-bind:class="{selected: servicesContains(service)}">
+                    <span>{{service.name}} - {{service.price}}</span>
+                    <button v-if="!servicesContains(service)" @click="selectedServices.push(service)">Add</button>
+                    <button v-if="servicesContains(service)" @click="selectedServices.splice(selectedServices.indexOf(service), 1)">Remove</button>
+                </div><br>
+                <div>
+                    Total: {{calcTotal}}
+                </div>
+            </div><br><br><br>
+            <div class="task2">
+                <button @click="altViewMode=false">List view</button>
+                <button @click="altViewMode=true">Grid view</button>
+                <div class="container" v-bind:class="altmode">
+                    <a v-for="(article, index) in articles" class="card" :href="article.url">
+                        <div>
+                            <div class="img" :style="{ 'background-image': 'url(' + article.img + ')' }"></div>
+                            <div>
+                                <h2>{{article.title}}</h2>
+                                <p>{{article.text}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    services: [{
+                            name: "service1",
+                            price: 100,
+                        }, {
+                            name: "service2",
+                            price: 200,
+                        }, {
+                            name: "service3",
+                            price: 300,
+                        }, {
+                            name: "service4",
+                            price: 400,
+                        }
+                    ],
+                    selectedServices: [],
+                    articles: [{
+                            title: "IBM and Linux Foundation Call on Developers to Make Natural Disasters Less Deadly",
+                            text: "On a stormy Tuesday in July, a group of 30 young programmers gathered in New York City to take on natural disasters. The attendees—most of whom were current college students and alumnae of the nonprofit Girls Who Code—had signed up for a six-hour hackathon in the middle of summer break.",
+                            url: "https://spectrum.ieee.org/tech-talk/computing/software/ibm-and-linux-ask-developers-to-build-tech-that-makes-natural-disasters-less-deadly",
+                            img: "https://spectrum.ieee.org/image/MzM0NzA0Mg.jpeg"
+                        }, {
+                            title: "Converge Robotics Group Commercializing Immersive Telepresence",
+                            url: "https://spectrum.ieee.org/automaton/robotics/robotics-hardware/converge-robotics-group-commercializing-immersive-telepresence",
+                            text: "At CES 2017, I got my mind blown by a giant mystery box from a company called AxonVR that was able to generate astonishingly convincing tactile sensations of things like tiny palm-sized animals running around on my palm in VR. An update in late 2017 traded the giant mystery box (and the ability to reproduce heat and cold) for a wearable glove with high resolution microfluidic haptics embedded inside of it.",
+                            img: "https://spectrum.ieee.org/image/MzU1MTQzMA.jpeg"
+                        }, {
+                            title: "Ferroelectric Semiconductors Could Mix Memory and Logic",
+                            text: "Engineers at Purdue University and at Georgia Tech have constructed the first devices from a new kind of two-dimensional material that combines memory-retaining properties and semiconductor properties. The engineers used a newly discovered ferroelectric semiconductor, alpha indium selenide, in two applications: as the basis of a type of transistor that stores memory as the amount of amplification it produces; and in a two-terminal device that could act as a component in future brain-inspired computers.",
+                            url: "https://spectrum.ieee.org/nanoclast/semiconductors/materials/ferroelectric-semiconductors-could-mix-memory-and-logic",
+                            img: "https://spectrum.ieee.org/image/MzU1MDUyOQ.jpeg"
+                        }, {
+                            title: "Long-lasting Lithium-Sulfur Battery Promises to Double EV Range",
+                            text: "Lithium-sulfur batteries seem to be ideal successors to good old lithium-ion. They could in theory hold up to five times the energy per weight. Their low weight makes them ideal for electric airplanes: firms such as Sion Power and Oxis Energy are starting to test their lithium-sulfur batteries in aircraft. And they would be cheaper given their use of sulfur instead of the rare-earth metals used in the cathode today.",
+                            url: "https://spectrum.ieee.org/energywise/energy/batteries-storage/lithium-sulfur-battery-news-ev-electric-vehicle-range",
+                            img: "https://spectrum.ieee.org/image/MzU0OTE1NA.jpeg"
+                        }, {
+                            title: "Are Your Students Bored? This AI Could Tell You",
+                            text: "A professor finishes a lecture and checks his computer. A software program shows that most students lost interest about 30 minutes into the lecture—around the time he went on a tangent. The professor makes a note to stop going on tangents.",
+                            url: "https://spectrum.ieee.org/the-human-os/biomedical/devices/ai-tracks-emotions-in-the-classroom",
+                            img: "https://spectrum.ieee.org/image/MzU1MTA5NA.jpeg"
+                        }, {
+                            title: "A Lithium-Ion Battery That You Can Scrunch",
+                            text: "Bend, roll, twist, scrunch, fold, flex. These are terms we might use to describe a lithe gymnast doing a complex floor routine. But batteries?Yet these are precisely the words the company Jenax in South Korea wants you to use when talking about its batteries. The Busan-based firm has spent the past few years developing J.Flex, an advanced lithium-ion battery that is ultra-thin, flexible, and rechargeable.",
+                            url: "https://spectrum.ieee.org/energywise/energy/batteries-storage/a-lithiumion-battery-that-bends",
+                            img: "https://spectrum.ieee.org/image/MzU1MDc1Mw.jpeg"
+                        },
+                    ],
+                    altViewMode: false,
+                },
+                methods: {
+                    servicesContains(n) {
+                        return this.selectedServices.indexOf(n) > -1
+                    },
+                    cardClick(url) {
+                        window.open(url);
+                    }
+                },
+                computed: {
+                    calcTotal: function() {
+                        let total = 0;
+                        for(service in this.selectedServices) {
+                            total += this.selectedServices[service].price;
+                        }
+                        return total;
+                    },
+                    altmode: function() {
+                        return this.altViewMode ? "gridview" : "listview";
+                    }
+                }
+            });
+        </script>
+   </body>
+</html>

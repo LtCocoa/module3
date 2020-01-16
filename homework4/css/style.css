@@ -1,0 +1,96 @@
+.task1 button {
+    width: 70px;
+    background-color: #11dd55;
+}
+
+.task1 .selected button {
+    background-color: #dd1111;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.gridview.container {
+    display: grid;
+    width: 1400px;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+}
+
+.gridview .card {
+    display: block;
+    height: auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.gridview .card:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    transition: transform 100ms ease-in-out;
+    background-color: rgb(240, 240, 240);
+}
+
+.gridview .card:hover h2 {
+    color: rgb(0, 128, 32);
+}
+
+.gridview .card h2 {
+    padding: 0 10px;
+    font-size: 32px;
+}
+
+.gridview .card p {
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+.gridview .img {
+    padding: 0;
+    float:  top;
+    width:  100%;
+    height: 300px;
+    background-size: cover;
+}
+
+
+
+.listview.container {
+    width: 600px;
+    margin: 10px auto 0 50px;
+    display: block;
+}
+
+.listview .card {
+    display: block;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.listview .card:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+}
+
+.listview .card:hover h2 {
+    color: rgb(0, 128, 32);
+}
+
+.listview .card h2 {
+    font-size: 30px;
+}
+
+.listview .card p {
+    font-size: 17px;
+}
+
+.listview .img {
+    display: none;
+}
