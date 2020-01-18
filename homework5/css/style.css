@@ -40,3 +40,8 @@ li:hover {
     text-transform: uppercase;
     text-align: center;
 }
+
+.task2, .task3 {
+    width: 200px;
+    margin: 0 auto 100px;
+}

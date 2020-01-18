@@ -15,28 +15,101 @@
                 </ul>
             </nav>
             <div :is="getTabComponentName"></div>
+            <div class="task2">
+                <h1>Task 2</h1>
+                <text-slider v-bind:quotes="quotes" duration="2000"></text-slider>
+            </div>
+            <div class="task3">
+                <h1>Task 3</h1>
+                <gallery></gallery>
+            </div>
         </div>
         <script>
             Vue.component('tab-home', {
                 template: '<div class="tab-container">Home</div>'
             });
-            Vue.component('tab-hosts', {
-                template: '<div class="tab-container">Hosts</div>'
+            Vue.component('tab-posts', {
+                template: '<div class="tab-container">Posts</div>'
             });
             Vue.component('tab-archive', {
                 template: '<div class="tab-container">Archive</div>'
+            });
+            Vue.component('text-slider', {
+                props: ['quotes', 'duration'],
+                data: function() {
+                    return {
+                        index: 0,
+                    }
+                },
+                created() {
+                    setInterval(this.nextSlide, this.duration);
+                },
+                methods: {
+                    nextSlide: function() {
+                        this.index++;
+                        if(this.index > this.quotes.length - 1)
+                            this.index = 0;
+                    }
+                },
+                computed: {
+                    opacity: function() {
+                        return {
+                            /*
+                            Как можно сделать анимацию
+                            (например изменение прозрачности)
+                            внутри самого компонента?
+                            */
+                            "opacity": 1,
+                        }
+                    },
+                },
+                template: `<div :style="[opacity]">{{quotes[index]}}</div>`
+            });
+            Vue.component('gallery', {
+                data: function() {
+                    return {
+                        images: ['img/mars.jpg', 'img/earth.jpg', 'img/jupiter.jpg'],
+                        newImage: '',
+                    }
+                },
+                methods: {
+                    addImage() {
+                        if(this.newImage != '') {
+                            this.images.push("img/"+this.newImage);
+                            this.newImage = '';
+                        }
+                    },
+                    removeImage(index) {
+                        this.images.splice(index, 1);
+                    },
+                    previewImage(e) {
+                        this.newImage = e.target.files[0].name;
+                    }
+                },
+                template: `<div>
+                        <div v-for="(image, index) in images">
+                            <gallery-image :src="image"></gallery-image>
+                            <button @click="removeImage(index)" style="width: 200px; margin-bottom: 10px">Remove</button>
+                        </div>
+                        <button @click="addImage">Add</button>
+                        <input type="file" @change="previewImage($event)">
+                    </div>`
+            });
+            Vue.component('gallery-image', {
+                template: `<img style="width: 200px; height: 200px; display: block;">`
             });
 
             let app = new Vue({
                 el: '#app',
                 data: {
                     currentTab: 'home',
-                    tabs: ['home', 'hosts', 'archive'],
+                    tabs: ['home', 'posts', 'archive'],
+                    quotes: ['Hello World!', 'test quote', 'If you tell the truth, you don\'t have to remember anything'],
                 },
                 computed: {
                     getTabComponentName() {
                         return 'tab-' + this.currentTab;
-                    }
+                    },
                 }
             });
         </script>
