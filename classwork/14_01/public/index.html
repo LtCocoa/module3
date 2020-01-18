@@ -1,0 +1,107 @@
+<html>
+	<head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+        <div id="app">
+            <ul>
+                <li><router-link
+                    tag="div"
+                    to="/" 
+                    exact
+                    active-class="active"
+                    >Домой</router-link></li>
+                <li><router-link
+                    tag="div"
+                    to="/about"
+                    active-class="active"
+                    >О нас</router-link></li>
+                <li><router-link
+                    tag="div"
+                    to="/err"
+                    active-class="active"
+                    >Битая</router-link></li>
+                <li><router-link
+                    to="/products"
+                    active-class="active"
+                    >Продукты</router-link></li>
+            </ul>
+            <router-view></router-view>
+        </div>
+        <script>
+            const NotFound = {
+                template: `<h2>Page not found</h2>`
+            };
+            const Home = {
+                template: `<h2>Home page</h2>`
+            };
+            const About = {
+                template: `<h2>Info</h2>`
+            };
+            const Products = {
+                template: `<div>
+                    <h2>Список товаров</h2>
+                    <router-view></router-view>
+                </div>`
+            };
+            const Phones = {
+                template: `<div>
+                        <h2>Phones</h2>
+                    </div>`
+            };
+            const Tablets = {
+                template: `<div>
+                        <h2>Tablets</h2>
+                    </div>`
+            };
+            const Index = {
+                template: `<div>
+                    <h3>Choose category</h3>
+                    <li><router-link
+                        to="/products/phones"
+                        active-class="active"
+                    >Phones</router-link></li>
+                    <li><router-link
+                        to="/products/tablets"
+                        active-class="active"
+                    >Tablets</router-link></li>
+                </div>`
+            }
+            const routes = [
+                { path: '/', component: Home },
+                { path: '/about', component: About },
+                { path: '*', component: NotFound },
+                { 
+                    path: '/products',
+                    component: Products,
+                    children: [
+                        {
+                            path: 'phones',
+                            component: Phones
+                        },
+                        {
+                            path: 'tablets',
+                            component: Tablets
+                        },
+                        {
+                            path: '',
+                            component: Index
+                        }
+                    ]
+                },
+            ];
+
+            const router = new VueRouter({
+                mode: 'history',
+                routes: routes,
+            });
+
+            const app = new Vue({
+                el: "#app",
+                router: router,
+            });
+        </script>
+   </body>
+</html>
